@@ -1,25 +1,13 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Comando para validar respuestas base de Pokemon
+Cypress.Commands.add('validarEstructuraPokemon', (response, expectedPokemon) => {
+    //Código HTTP 200.
+    expect(response.status).to.eq(200);
+    //El nombre corresponde al Pokémon solicitado.
+    expect(response.body.name).to.eq(expectedPokemon.name);
+    //El identificador (id) es válido .
+    expect(response.body.id).to.eq(expectedPokemon.id);
+    //La respuesta contiene habilidades (abilities)y se valida la estructura en el JSON
+    expect(response.body).to.have.property('abilities').that.is.an('array').and.is.not.empty;
+    //La respuesta contiene tipos (types) y se valida la estructura en el JSON
+    expect(response.body.types).to.be.an('array').and.not.be.empty;
+});
