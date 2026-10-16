@@ -1,5 +1,5 @@
 describe('Pruebas de la API de Pokemon', () => {
-  let pokemons; //Variable para almacenar datos de pokemones. Se utiliza para los diferentes retos. Se utiliza let para permitir reasignar valor
+  let pokemons; //Variable para almacenar datos de pokemones. Se utiliza let para permitir reasignar valor
 
   const getFirstAbility = (pokemonBody) => {
     return {
@@ -7,7 +7,7 @@ describe('Pruebas de la API de Pokemon', () => {
       name: pokemonBody.abilities[0].ability.name
     };
   };
-  // Carga el archivo de datos json antes de ejecutar las pruebas
+  // Carga el archivo de datos json
   before(() => {
     cy.fixture('pokemon.json').then((data) => {
       pokemons = data;
@@ -15,8 +15,8 @@ describe('Pruebas de la API de Pokemon', () => {
   });
 
   it('Reto 1 Consulta exitosa de un Pokemon', () => {
-    //Se elige pikachu como pokemon existente
-    const primerPokemon = pokemons[0];
+    
+    const primerPokemon = pokemons[0]; //Se elige pikachu como pokemon existente
     cy.request(`/api/v2/pokemon/${primerPokemon.name}`).then((response) => {
       //Validaciones de pokemon
       cy.validarEstructuraPokemon(response, primerPokemon);
@@ -26,7 +26,6 @@ describe('Pruebas de la API de Pokemon', () => {
   it('Reto 2 Validación de múltiples Pokemon', () => {
     // Se realiza sobre cada objeto del archivo pokemons.json
     pokemons.forEach((pokemon) => {
-      //Se coloca la URL con variable
       cy.request(`/api/v2/pokemon/${pokemon.name}`).then((response) => {
         //Validaciones de pokemon
         cy.validarEstructuraPokemon(response, pokemon)
@@ -41,7 +40,6 @@ describe('Pruebas de la API de Pokemon', () => {
       url: '/pokemoninexistente123',
       failOnStatusCode: false // Evita que Cypress falle al recibir el código 404. La aplicación de pruebas maneja correctamente la respuesta de error.
     }).then((response) => {
-      //Código HTTP 404.
       expect(response.status).to.eq(404);
       cy.log('El escenario negativo no provocó una falla inesperada en la ejecución de Cypress.');
     });
@@ -52,10 +50,8 @@ describe('Pruebas de la API de Pokemon', () => {
 
     cy.fixture('pokemon').then((pokemonList) => {
       pokemonList.forEach((pokeData) => {
-        // Primera petición al Pokemon 
+        // Primera petición de Pokemon 
         cy.request(`/api/v2/pokemon/${pokeData.name}`).then((response) => {
-
-          //Se valida que la primera petición fue exitosa
           cy.validarEstructuraPokemon(response, pokeData)
 
           //Se obtiene de la respuesta del primer request, la URL del segundo request y el nombre de esa habilidad
@@ -69,8 +65,7 @@ describe('Pruebas de la API de Pokemon', () => {
           cy.request(mockAbilityUrl).then((abilityResponse) => {
             // Se valida respuesta exitosa de segunda petición
             expect(abilityResponse.status).to.eq(200);
-            //Se valida que se obtuvo la habilidad obtenida desde el primer request
-            expect(abilityResponse.body.name).to.eq(abilityInfo.name);
+            expect(abilityResponse.body.name).to.eq(abilityInfo.name); //Se valida que se obtuvo la habilidad obtenida desde el primer request
             cy.log(`Información relacionada validada con éxito para el pokemon: ${response.body.name} y la habilidad: ${abilityInfo.name}`);
           });
         });
