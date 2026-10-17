@@ -5,15 +5,22 @@ Este proyecto contiene una suite de pruebas automatizadas para la API pública d
 Para ejecutar este proyecto necesitas tener instalado en tu sistema:
 
 Node.js (versión 18.x o superior recomendada)
+
 npm (gestor de paquetes de Node)
+
 Git (para clonar el repositorio)
 
 # Instalación
 Sigue estos pasos para configurar tu entorno de desarrollo local:
+
 Clona el repositorio:
+
 git clone https://github.com/sofiasepulveda15-a11y/pokemon_api_OP.git
+
 cd pokemon_api_OP
+
 Instala las dependencias del proyecto:
+
 npm install
 
 # Ejecutando las pruebas
@@ -51,8 +58,11 @@ Configuración Global de BaseURL: Definida en cypress.config.js (https://pokeapi
 
 # Construido con 🛠️
 Cypress - Framework de automatización de pruebas end-to-end y APIs.
+
 JavaScript  - Lenguaje de programación.
+
 Node.js - Entorno de ejecución para JavaScript.
+
 PokéAPI - RESTful Pokémon API oficial consumida en las pruebas.
 
 # Autor ✒️
