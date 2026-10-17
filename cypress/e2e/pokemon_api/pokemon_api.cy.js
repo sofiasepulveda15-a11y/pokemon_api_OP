@@ -57,12 +57,8 @@ describe('Pruebas de la API de Pokemon', () => {
           //Se obtiene de la respuesta del primer request, la URL del segundo request y el nombre de esa habilidad
           const abilityInfo = getFirstAbility(response.body);
 
-          // Transformamos la URL oficial para que apunte a nuestro Mock Server de Postman
-          // Reemplazamos el dominio base de la pokeapi por el dominio de nuestro Mock
-          const mockAbilityUrl = abilityInfo.url.replace('https://pokeapi.co', 'https://993b1a51-dd4b-4578-a07b-8c0e8b2a86d6.mock.pstmn.io');
-
           // Segunda petición de habilidades
-          cy.request(mockAbilityUrl).then((abilityResponse) => {
+          cy.request(abilityInfo.url).then((abilityResponse) => {
             // Se valida respuesta exitosa de segunda petición
             expect(abilityResponse.status).to.eq(200);
             expect(abilityResponse.body.name).to.eq(abilityInfo.name); //Se valida que se obtuvo la habilidad obtenida desde el primer request

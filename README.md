@@ -17,7 +17,9 @@ Clona el repositorio:
 
 git clone https://github.com/sofiasepulveda15-a11y/pokemon_api_OP.git
 
+
 cd pokemon_api_OP
+
 
 Instala las dependencias del proyecto:
 
@@ -29,8 +31,10 @@ El proyecto está configurado para ejecutar la suite de pruebas tanto en modo in
 # Modo Interactivo (Test Runner)
 Abre la interfaz gráfica de Cypress para seleccionar y visualizar la ejecución en tiempo real:
 npx cypress open
+
 # Modo Headless (Línea de Comandos)
 Ejecuta la suite completa directamente en la terminal:
+
 npx cypress run
 
 # Evidencias de Ejecución 📸
@@ -58,11 +62,8 @@ Configuración Global de BaseURL: Definida en cypress.config.js (https://pokeapi
 
 # Construido con 🛠️
 Cypress - Framework de automatización de pruebas end-to-end y APIs.
-
 JavaScript  - Lenguaje de programación.
-
 Node.js - Entorno de ejecución para JavaScript.
-
 PokéAPI - RESTful Pokémon API oficial consumida en las pruebas.
 
 # Autor ✒️
